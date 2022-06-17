@@ -1,0 +1,16 @@
+@use "./variables" as *;
+@mixin pre-tablet-screen {
+    @media screen and (max-width: map-get($breakpoints, pre-tablet)){
+        @content;
+    }
+}
+@mixin tablet-screen {
+    @media screen and (max-width: map-get($breakpoints, tablet)){
+        @content;
+    }
+}
+@mixin mobile-screen{
+    @media screen and (max-width: map-get($breakpoints, mobile)){
+        @content;
+    }
+}

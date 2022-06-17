@@ -1,4 +1,4 @@
-function editNav() {
+function editNav(event) {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
     x.className += " responsive";
@@ -21,6 +21,12 @@ modalBtn.forEach((btn) => btn.addEventListener("click", toggleModal));
 
 // close modal event
 closeBtn.addEventListener("click", toggleModal);
+document.addEventListener('keydown', function(event){
+	if(event.key === "Escape" && modalbg.style.display === "block"){
+		console.log('escape');
+    toggleModal();
+	}
+});
 
 
   function toggleModal(){

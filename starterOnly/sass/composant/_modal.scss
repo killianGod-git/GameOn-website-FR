@@ -1,6 +1,6 @@
 @use "../utils/variables" as v;
 .button {
-    background: #fe142f;
+    background: v.$modal-color;
     margin-top: 0.5em;
     padding: 1em;
     color: v.$white;
@@ -183,7 +183,7 @@
   }
   .btn-submit,
   .btn-signup {
-    background: #fe142f;
+    background: v.$modal-color;
     display: block;
     margin: 0 auto;
     border-radius: 7px;
