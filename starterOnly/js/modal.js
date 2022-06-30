@@ -29,12 +29,6 @@ document.addEventListener('keydown', function(event){
 	}
 });
 
-// fermeture modal clic exterieur form
-// modalbg.addEventListener("click", (event) => {
-//   event.stopPropagation();
-//   toggleModal();
-// });
-
 function toggleModal(){
     if (modalbg.classList.contains("open")){  // condition pour ajouter une animation a la fermeture de la modal
       modalbg.style.animation = "closeModal 500ms both ";

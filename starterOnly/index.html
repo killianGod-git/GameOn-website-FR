@@ -56,26 +56,29 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
+          <form name="reserve" action="index.html" method="post" id="formulaireInscription">
             <div class="formData">
               <label for="first">Prénom</label><br>
-              <input class="text-control" type="text" id="first" name="first" minlength="2" required/><br>
+              <input class="text-control" type="text" id="first" name="first" /><br>
+              <span id="firstError"></span>
             </div>
             <div class="formData">
               <label for="last">Nom</label><br>
-              <input class="text-control" type="text" id="last" name="last" required/><br>
+              <input class="text-control" type="text" id="last" name="last"/><br>
+              <span id="lastError"></span>
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" required/><br>
+              <span id="mailError"></span>
             </div>
             <div class="formData">
               <label for="birthdate">Date de naissance</label><br>
-              <input class="text-control" type="date" id="birthdate" name="birthdate" required/><br>
+              <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
             </div>
             <div class="formData">
               <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" >
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
