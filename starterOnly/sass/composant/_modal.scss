@@ -210,4 +210,7 @@
   .select-selected {
     background-color: v.$white;
   }
-  
+  .error{
+    color: v.$error-color;
+    font-size: 0.7rem;
+  }

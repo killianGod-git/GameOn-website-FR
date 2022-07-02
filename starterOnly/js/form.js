@@ -5,31 +5,110 @@ const last = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
+// const newYork = document.getElementById("location1");
+// const sanFransisco = document.getElementById("location2");
+// const seattle = document.getElementById("location3");
+// const chicago = document.getElementById("location4");
+// const boston = document.getElementById("location5");
+// const portland = document.getElementById("location6");
+// let radio = [newYork, sanFransisco, seattle, chicago, boston, portland];
+const radioBouton = document.getElementById("radioBouton");
+const villes=Array.from(radioBouton.querySelectorAll("input"));
 
 
 // déclaration regex
-const regexFirst = /^[a-zA-Z-\s]{2,}$/;
+const regexCaracteres = /^[a-zA-Z-\s]{2,}$/;
 const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const regexDate = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+const regexNombres = /^-?\d+\.?\d*$/
 
 
  myform.addEventListener("submit", function(e){
-    if (regexFirst.test(first.value) == false){
+    e.preventDefault();
+//     console.log(myform);
+//     const allInput=Array.from(myform.querySelectorAll("input"));
+//     allInput.forEach(node => {
+//        const nodeId=node.getAttribute("id");
+//        switch(nodeId){
+//         case "first":{
+//                 const r=valideName()
+//                 if(!r){
+//                     addError(node, "Vous devez entrer plus de 2 caractères")
+//                 }
+//                 break;
+//             }
+//        case "last":
+//             {
+//             const r=validLastName()
+//             if(!r){
+//                 addError(node, "Vous devez entrer plus de 2 caractères")
+//             }
+//             break;}
+
+//        }
+//     });
+    if (!regexCaracteres.test(first.value)){
         const myerror = document.getElementById("firstError");
-        myerror.innerHTML = "le champs doit comporter au minimum 2 caratères";
+        myerror.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
         first.style.borderColor = "red";
-        myerror.style.color = "red";
-        e.preventDefault();
-    }  else if (regexFirst.test(last.value) == false){
+        
+    }  else {
+    const myerror = document.getElementById('firstError');  
+    myerror.innerHTML = "";}
+    
+    if (!regexCaracteres.test(last.value)){
         const myerror = document.getElementById("lastError");
-        myerror.innerHTML = "le champs doit comporter au minimum 2 caratères";
+        myerror.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
         first.style.borderColor = "red";
-        myerror.style.color = "red";
-        e.preventDefault();
-    } else if (regexMail.test(email.value) == false){
+        
+    } else {
+      const myerror = document.getElementById('lastError');  
+      myerror.innerHTML = "";}
+     if (!regexMail.test(email.value)){
         const myerror = document.getElementById("mailError");
-        myerror.innerHTML = "Veuillez rentrer une adresse mail valide";
+        myerror.innerHTML = "Vous devez entrer une adresse mail valide";
         first.style.borderColor = "red";
-        myerror.style.color = "red";
-        e.preventDefault();
-    }
+        
+    } else {
+      const myerror = document.getElementById('mailError');  
+      myerror.innerHTML = "";}
+
+      if (!regexDate.test(birthdate.value)){
+         const myerror = document.getElementById("birthdateError");
+         myerror.innerHTML = "Vous devez entrer votre date de naissance";
+         first.style.borderColor = "red";
+         
+      } else {
+       const myerror = document.getElementById('birthdateError');  
+       myerror.innerHTML = "";}
+
+      if (!regexNombres.test(quantity.value)){
+         const myerror = document.getElementById("quantityError");
+         myerror.innerHTML = "vous devez inscrire votre nombre de participations ";
+         first.style.borderColor = "red";
+         
+      } else {
+       const myerror = document.getElementById('quantityError');  
+       myerror.innerHTML = "";
+      }
+      // for (let i = 0; i < villes.length; i++) {
+		// 	if (!villes[i].checked === true ) {
+      //       const myerror = document.getElementById("locationError");
+      //       myerror.innerHTML = "Vous devez choisir une option";
+      //       first.style.borderColor = "red";
+            
+      //    } else {
+      //     const myerror = document.getElementById('locationError');  
+      //     myerror.innerHTML = "";
+      //    } break;
+      //    }
  })
+
+
+//  const addError=(input, message)=>{
+//     const span=input.nextSibling().innerHtml=message;
+    
+//  };
+//  const removeError=(input, message)=>{
+
+//  }
