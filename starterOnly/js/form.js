@@ -1,13 +1,5 @@
 // déclarations valeurs DOM
 const myform = document.getElementById("formulaireInscription");
-const first = document.getElementById("first");
-const last = document.getElementById("last");
-const email = document.getElementById("email");
-const birthdate = document.getElementById("birthdate");
-const quantity = document.getElementById("quantity");
-const radioBouton = document.getElementById("radioBouton");
-const villes=Array.from(radioBouton.querySelectorAll("input"));
-
 
 // déclaration regex
 const regexCaracteres = /^[a-zA-Z-\s]{2,}$/;
@@ -18,94 +10,111 @@ const regexNombres = /^-?\d+\.?\d*$/
 
  myform.addEventListener("submit", function(e){
     e.preventDefault();
-//     console.log(myform);
-//     const allInput=Array.from(myform.querySelectorAll("input"));
-//     allInput.forEach(node => {
-//        const nodeId=node.getAttribute("id");
-//        switch(nodeId){
-//         case "first":{
-//                 const r=valideName()
-//                 if(!r){
-//                     addError(node, "Vous devez entrer plus de 2 caractères")
-//                 }
-//                 break;
-//             }
-//        case "last":
-//             {
-//             const r=validLastName()
-//             if(!r){
-//                 addError(node, "Vous devez entrer plus de 2 caractères")
-//             }
-//             break;}
-
-//        }
-//     });
-    if (!regexCaracteres.test(first.value)){
-        const myerror = document.getElementById("firstError");
-        myerror.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-        first.style.borderColor = "red";
-        
-    }  else {
-    const myerror = document.getElementById('firstError');  
-    myerror.innerHTML = "";}
-    
-    if (!regexCaracteres.test(last.value)){
-        const myerror = document.getElementById("lastError");
-        myerror.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-        first.style.borderColor = "red";
-        
-    } else {
-      const myerror = document.getElementById('lastError');  
-      myerror.innerHTML = "";}
-     if (!regexMail.test(email.value)){
-        const myerror = document.getElementById("mailError");
-        myerror.innerHTML = "Vous devez entrer une adresse mail valide";
-        first.style.borderColor = "red";
-        
-    } else {
-      const myerror = document.getElementById('mailError');  
-      myerror.innerHTML = "";}
-
-      if (!regexDate.test(birthdate.value)){
-         const myerror = document.getElementById("birthdateError");
-         myerror.innerHTML = "Vous devez entrer votre date de naissance";
-         first.style.borderColor = "red";
-         
-      } else {
-       const myerror = document.getElementById('birthdateError');  
-       myerror.innerHTML = "";}
-
-      if (!regexNombres.test(quantity.value)){
-         const myerror = document.getElementById("quantityError");
-         myerror.innerHTML = "vous devez inscrire votre nombre de participations ";
-         first.style.borderColor = "red";
-         
-      } else {
-       const myerror = document.getElementById('quantityError');  
-       myerror.innerHTML = "";
+    console.log(myform);
+    const allInput=Array.from(myform.querySelectorAll("input"));
+    allInput.forEach(node => {
+       const nodeId=node.getAttribute("id");
+       switch(nodeId){
+        case "first":{
+                const r=valideName(node)
+                if(r){
+                    addError(node, r)
+                } else{
+                  removeError(node)
+                }
+                break;
+            }
+       case "last":
+            {
+            const r=valideName(node )
+            if(r){
+                addError(node, r)
+            }else{
+               removeError(node)
+             }
+            break;
+         }
+         case "email":
+            {
+               const r=valideEmail(node )
+                  if(r){
+                     addError(node, r)
+                  } else{
+                     removeError(node)
+                   }
+                  break;
+            }
+         case "birthdate":
+            {
+               const r=valideBirthday(node )
+                  if(r){
+                     addError(node, r)
+                  } else {
+                     removeError(node)
+                  }
+                  break;
+            }
+            case "quantity":
+               {
+                  const r=valideQuantity(node )
+                     if(r){
+                        addError(node, r)
+                     } else{
+                        removeError(node)
+                     }
+                     break;
+               }
+       }
+    });
+ })
+   const valideName=(input)=>{
+      input.value;
+      if (regexCaracteres.test(input.value)){
+         return undefined;
       }
-      let checked = false;
-      for (let i = 0; i < villes.length; i++) {
-			if (villes[i].checked ) {
-            checked = true;
-            break;   
+      else{
+         if (input.getAttribute("id") === "first"){
+            return "First a Minimum 2 caractères";
+         }else {
+            return "Last a Minimum 2 caractères";
          }
       }
-      if (!checked){
-         const myerror = document.getElementById("locationError");
-         myerror.innerHTML = "Vous devez choisir une option";
-         first.style.borderColor = "red";
+   }
+   const valideEmail=(input)=>{
+      input.value;
+      if (regexMail.test(input.value)){
+         return undefined;
       } else {
-         const myerror = document.getElementById('locationError');  
-         myerror.innerHTML = "";
+         if (input.getAttribute("id") === "email"){
+            return "Vous devez entrer une adresse mail valide."
+         }
       }
- })
-
-
-//  const addError=(input, message)=>{
-//     const span=input.nextSibling().innerHtml=message;
-    
-//  };
-//  const removeError=(input, message)=>{
-
-//  }
+   }
+   const valideBirthday=(input)=>{
+      input.value;
+      if (regexDate.test(input.value)){
+         return undefined;
+      } else {
+         if (input.getAttribute("id") === "birthdate"){
+            return "Vous devez rentrer votre date de naissance."
+         }
+      }
+   }
+   const valideQuantity=(input)=>{
+      input.value;
+      if (regexNombres.test(input.value)){
+         return undefined;
+      } else{
+         if (input.getAttribute("id") === "quantity"){
+            return "Vous devez rentrer votre nombre de participations"
+         }
+      }
+   }
+ const addError=(input, message)=>{
+   const parent =input.parentElement;
+   parent.querySelector(".error").innerHTML = message;
+ };
+ const removeError=(input)=>{
+   const parent =input.parentElement;
+   parent.querySelector(".error").innerHTML = "";
+ }
