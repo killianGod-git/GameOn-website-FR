@@ -65,10 +65,20 @@ const regexNombres = /^-?\d+\.?\d*$/
                      }
                      break;
                }
+               case "checkbox1":
+               {
+                  const r=valideChecked(node )
+                     if(r){
+                        addError(node, r)
+                     } else{
+                        removeError(node)
+                     }
+                     break;
+               }
        }
        const r=validePosition(node )
          if(r){}
-    });
+   });
  })
    const valideName=(input)=>{
       input.value;
@@ -129,6 +139,16 @@ const regexNombres = /^-?\d+\.?\d*$/
          const myerror = document.getElementById('locationError');  
          myerror.innerHTML = "";
       }
+   }
+   const valideChecked=(input)=>{
+         console.log(input.checked);
+         if (input.checked === true){
+            return undefined;
+         } else{
+            if (input.getAttribute("id") === "checkbox1"){
+               return "Vous devez vérifier que vous acceptez les termes et conditions"
+            }
+         }
    }
  const addError=(input, message)=>{
    const parent =input.parentElement;
