@@ -1,5 +1,6 @@
 // déclarations valeurs DOM
 const myform = document.getElementById("formulaireInscription");
+const villes=Array.from(radioBouton.querySelectorAll("input"));
 
 // déclaration regex
 const regexCaracteres = /^[a-zA-Z-\s]{2,}$/;
@@ -65,6 +66,8 @@ const regexNombres = /^-?\d+\.?\d*$/
                      break;
                }
        }
+       const r=validePosition(node )
+         if(r){}
     });
  })
    const valideName=(input)=>{
@@ -108,6 +111,23 @@ const regexNombres = /^-?\d+\.?\d*$/
          if (input.getAttribute("id") === "quantity"){
             return "Vous devez rentrer votre nombre de participations"
          }
+      }
+   }
+   const validePosition=()=>{
+      let checked = false;
+      for (let i = 0; i < villes.length; i++) {
+         if (villes[i].checked ) {
+            checked = true;
+            break;   
+         }
+      }
+      if (!checked){
+         const myerror = document.getElementById("locationError");
+         myerror.innerHTML = "Vous devez choisir une option";
+         first.style.borderColor = "red";
+      } else {
+         const myerror = document.getElementById('locationError');  
+         myerror.innerHTML = "";
       }
    }
  const addError=(input, message)=>{
