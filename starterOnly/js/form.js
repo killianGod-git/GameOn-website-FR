@@ -1,6 +1,7 @@
 // déclarations valeurs DOM
 const myform = document.getElementById("formulaireInscription");
 const villes = Array.from(radioBouton.querySelectorAll("input"));
+const validationInscription = document.getElementById("validationInscription");
 
 // déclaration regex
 const regexCaracteres = /^[a-zA-Z-\s]{2,}$/;
@@ -87,7 +88,12 @@ myform.addEventListener("submit", function (e) {
    });
    console.log(validation);
    if (validation){
-      myform.style.display = 'none';
+      myform.remove();
+      validationInscription.style.display = "block";
+      setTimeout (() => { // fonction pour faire un temps d'arret avant l'execution du code 
+         modalbg.classList.toggle("open");
+         modalbg.style.animation = ""; // changement de l'animation afin de ne pas avoir une boucle a la réouverture de la modal
+       }, "2500");
    }
 })
 

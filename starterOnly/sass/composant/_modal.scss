@@ -214,3 +214,11 @@
     color: v.$error-color;
     font-size: 0.7rem;
   }
+  #validationInscription{
+    display: none;
+    color: v.$validation-color;
+    text-align: center;
+    span{
+      font-size: 2rem;
+    }
+  }
