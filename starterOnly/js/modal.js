@@ -24,7 +24,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", (event) => {
 closeBtn.addEventListener("click", toggleModal);
 document.addEventListener('keydown', function(event){
 	if(event.key === "Escape" && modalbg.style.display === "block"){
-		console.log('escape');
+		console.log(event.key);
     toggleModal();
 	}
 });
