@@ -18,6 +18,7 @@ const closeBtn = document.querySelector(".close");
 modalBtn.forEach((btn) => btn.addEventListener("click", (event) => {
   event.stopPropagation();
   toggleModal();
+  myform.reset();
 }));
 
 // close modal event
@@ -31,7 +32,7 @@ document.addEventListener('keydown', function(event){
 
 function toggleModal(){
     if (modalbg.classList.contains("open")){  // condition pour ajouter une animation a la fermeture de la modal
-      modalbg.style.animation = "closeModal 500ms both ";
+      modalbg.style.animation = "closeModal 500ms both "; 
       setTimeout (() => { // fonction pour faire un temps d'arret avant l'execution du code 
         modalbg.classList.toggle("open");
         modalbg.style.animation = ""; // changement de l'animation afin de ne pas avoir une boucle a la réouverture de la modal
