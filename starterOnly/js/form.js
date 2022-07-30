@@ -22,10 +22,8 @@ myform.addEventListener("submit", function (e) {
             if (r) { // if r === true faire ce code
                addError(node, r); //utilisation de la fonction ligne 187
                validation = false; //changement de la variable validation
-               first.classList.add('borderError'); //ajout de la class borderError
             } else { // if r === false
                removeError(node); // utilisation fonction ligne 187
-               first.classList.remove('borderError'); //retrait class borderError
             }
             break; // arret de ce case
          } //même procédé pour les suivants
@@ -35,10 +33,8 @@ myform.addEventListener("submit", function (e) {
                if (r) {
                   addError(node, r);
                   validation = false
-                  last.classList.add('borderError');
                } else {
                   removeError(node);
-                  last.classList.remove('borderError');
                }
                break;
             }
@@ -48,10 +44,8 @@ myform.addEventListener("submit", function (e) {
                if (r) {
                   addError(node, r);
                   validation = false;
-                  email.classList.add('borderError');
                } else {
                   removeError(node);
-                  email.classList.remove('borderError');
                }
                break;
             }
@@ -60,11 +54,9 @@ myform.addEventListener("submit", function (e) {
                const r = valideBirthday(node)
                if (r) {
                   addError(node, r);
-                  validation = false;
-                  birthdate.classList.add('borderError');
+                  validation = false; 
                } else {
-                  removeError(node);
-                  birthdate.classList.remove('borderError');
+                  removeError(node); 
                }
                break;
             }
@@ -194,8 +186,10 @@ const valideChecked = (input) => {
 const addError = (input, message) => {
    const parent = input.parentElement;
    parent.querySelector(".error").innerHTML = message;
+   input.classList.add("borderError");
 };
 const removeError = (input) => {
    const parent = input.parentElement;
    parent.querySelector(".error").innerHTML = "";
+   input.classList.remove("borderError");
 }

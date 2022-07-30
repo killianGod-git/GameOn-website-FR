@@ -19,6 +19,9 @@ modalBtn.forEach((btn) => btn.addEventListener("click", (event) => {
   event.stopPropagation();
   toggleModal();
   myform.reset();
+  if (window.matchMedia("(max-width: 800px)").matches) {
+    document.querySelector("html").scrollTop = 0;
+  }
 }));
 
 // close modal event
