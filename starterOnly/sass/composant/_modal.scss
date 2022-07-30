@@ -1,4 +1,5 @@
 @use "../utils/variables" as v;
+@use "../utils/mixins" as m;
 .button {
     background: v.$modal-color;
     margin-top: 0.5em;
@@ -27,7 +28,11 @@
     width: 100%;
     overflow: auto;
     background-color: rgba(26, 39, 156, 0.4);
-    
+    @include m.pre-tablet-screen{
+      top: 80px;
+      overflow: unset;
+      position: absolute;
+    }
   }
   .open {
     display: block !important;
@@ -44,6 +49,10 @@
     position: relative;
     color: v.$white;
     padding-top: 10px;
+    @include m.pre-tablet-screen{
+      max-width: 100%;
+      margin: 0;
+    }
   }
   
   .modal-body {
@@ -86,7 +95,7 @@
   .formData[data-error-visible="true"]::after {
     opacity: 1;
   }
-  .formData[data-error-visible="true"] .text-control {
+  .borderError {
     border: 2px solid v.$error-color;
   }
   /* 
@@ -213,4 +222,21 @@
   .error{
     color: v.$error-color;
     font-size: 0.7rem;
+  }
+  #validationInscription{
+    display: none;
+    color: v.$white;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    min-height: 768px;
+    span{
+      font-size: 2rem;
+    }
+    button{
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
